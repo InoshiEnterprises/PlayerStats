@@ -35,11 +35,13 @@ public final class NumberFormatter {
      * This method turns the number into hearts.
      */
     public String formatDamageNumber(long number, Unit statUnit) {  //7 statistics
+        String xd;
         if (statUnit == Unit.HEART) {
-            return format.format(Math.round(number / 2.0));
+            xd = format.format(Math.round(number / 2.0));
         } else {
-            return format.format(number);
+            xd = format.format(number);
         }
+        return xd.replaceAll("\\p{Z}", ".");
     }
 
     /**
@@ -49,20 +51,26 @@ public final class NumberFormatter {
      * depending on the config settings.
      */
     public String formatDistanceNumber(long number, Unit statUnit) {  //15 statistics
+        String xd;
         switch (statUnit) {
             case CM -> {
-                return format.format(number);
+                xd = format.format(number);
+                break;
             }
             case MILE -> {
-                return format.format(Math.round(number / 160934.4));  //to get from CM to Miles
+                xd = format.format(Math.round(number / 160934.4));  //to get from CM to Miles
+                break;
             }
             case KM -> {
-                return format.format(Math.round(number / 100000.0));  //divide by 100 to get M, divide by 1000 to get KM
+                xd = format.format(Math.round(number / 100000.0));  //divide by 100 to get M, divide by 1000 to get KM
+                break;
             }
             default -> {
-                return format.format(Math.round(number / 100.0));
+                xd = format.format(Math.round(number / 100.0));
+                break;
             }
         }
+        return xd.replaceAll("\\p{Z}", ".");
     }
 
     /** The unit of time-based statistics is ticks by default.
