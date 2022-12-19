@@ -26,7 +26,8 @@ public final class NumberFormatter {
      * corresponding config settings, and adds commas in groups of 3.
      */
     public String formatNumber(long number) {
-        return format.format(number);
+        String formatted = format.format(number);
+        return formatted.replaceAll("\\p{Z}", ".");
     }
 
     /**
